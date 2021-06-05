@@ -7,8 +7,6 @@ class GraphqlController < ApplicationController
   
   def response_for(operation:)
     case operation
-    when "getAvailableSessionForParticipant"
-      available_session_response
     when "getPanelInvitation"
       panel_invitation_response
     end
