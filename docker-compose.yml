@@ -1,0 +1,23 @@
+version: '3'
+networks:
+  default:
+    name: usertesting
+volumes:
+  bundle_path:
+services:
+  orders:
+    build:
+      context: .
+    container_name: mock-orders
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./:/usr/src/app
+    stdin_open: true
+    tty: true
+    entrypoint: entrypoint.sh
+    command: [ "bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "4000" ]
+    environment:
+      RAILS_ENV: development
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
